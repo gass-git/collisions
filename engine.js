@@ -32,33 +32,27 @@ function gameLoop() {
   handleCanvasCollisions(rect);
   handleCanvasCollisions(square);
 
-  // corner collision
-  let C1 =
+  // conditions for corner collisions
+  const C = [
     rect.borderTop.y === square.borderBottom.y &&
-    Math.abs(rect.borderLeft.x - square.borderRight.x) <= cornerLength;
-  let C2 =
+      Math.abs(rect.borderLeft.x - square.borderRight.x) <= cornerLength,
     rect.borderTop.y === square.borderBottom.y &&
-    Math.abs(square.borderLeft.x - rect.borderRight.x) <= cornerLength;
-  let C3 =
+      Math.abs(square.borderLeft.x - rect.borderRight.x) <= cornerLength,
     rect.borderBottom.y === square.borderTop.y &&
-    Math.abs(rect.borderLeft.x - square.borderRight.x) <= cornerLength;
-  let C4 =
+      Math.abs(rect.borderLeft.x - square.borderRight.x) <= cornerLength,
     rect.borderBottom.y === square.borderTop.y &&
-    Math.abs(square.borderLeft.x - rect.borderRight.x) <= cornerLength;
-  let C5 =
+      Math.abs(square.borderLeft.x - rect.borderRight.x) <= cornerLength,
     rect.borderLeft.x === square.borderRight.x &&
-    Math.abs(square.borderBottom.y - rect.borderTop.y) <= cornerLength;
-  let C6 =
+      Math.abs(square.borderBottom.y - rect.borderTop.y) <= cornerLength,
     rect.borderRight.x === square.borderLeft.x &&
-    Math.abs(square.borderBottom.y - rect.borderTop.y) <= cornerLength;
-  let C7 =
+      Math.abs(square.borderBottom.y - rect.borderTop.y) <= cornerLength,
     rect.borderLeft.x === square.borderRight.x &&
-    Math.abs(rect.borderBottom.y - square.borderTop.y) <= cornerLength;
-  let C8 =
+      Math.abs(rect.borderBottom.y - square.borderTop.y) <= cornerLength,
     rect.borderRight.x === square.borderLeft.x &&
-    Math.abs(rect.borderBottom.y - square.borderTop.y) <= cornerLength;
+      Math.abs(rect.borderBottom.y - square.borderTop.y) <= cornerLength,
+  ];
 
-  if (C1 || C2 || C3 || C4 || C5 || C6 || C7 || C8) {
+  if (C[0] || C[1] || C[2] || C[3] || C[4] || C[5] || C[6] || C[7]) {
     if (rect.vector.y === 0) rect.vector.y = square.vector.y;
     else rect.vector.y *= -1;
 
@@ -71,7 +65,6 @@ function gameLoop() {
     if (square.vector.x === 0) square.vector.x = rect.vector.x;
     else square.vector.x *= -1;
   } else {
-    // Object collisions on Y axis
     if (rect.borderTop.y === square.borderBottom.y) {
       if (
         rect.borderRight.x >= square.borderLeft.x &&
