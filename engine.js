@@ -31,12 +31,8 @@ function gameLoop() {
   context.stroke();
 
   // update positions
-  // TODO: create setters to update the positions
-  rectangle.pos.y += rectangle.vector.y;
-  rectangle.pos.x += rectangle.vector.x;
-
-  square.pos.y += square.vector.y;
-  square.pos.x += square.vector.x;
+  rectangle.updatePos();
+  square.updatePos();
 
   // rectangle collisions with canvas borders
   if (

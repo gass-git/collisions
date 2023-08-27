@@ -5,6 +5,11 @@ export default class Square {
     this.width = this.height = width;
   }
 
+  updatePos() {
+    this.pos.y += this.vector.y;
+    this.pos.x += this.vector.x;
+  }
+
   get borderTop() {
     return { y: this.pos.y };
   }

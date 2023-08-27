@@ -6,6 +6,11 @@ export default class Rectangle {
     this.height = height;
   }
 
+  updatePos() {
+    this.pos.y += this.vector.y;
+    this.pos.x += this.vector.x;
+  }
+
   get borderTop() {
     return { y: this.pos.y };
   }
