@@ -1,5 +1,6 @@
 import Square from "./classes/square.js";
 import Rectangle from "./classes/rectangle.js";
+import handleCanvasCollisions from "./handlers/handleCanvasCollisions.js";
 
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
@@ -20,43 +21,16 @@ function stop() {
 }
 
 function gameLoop() {
-  // context erase previews frame
   context.clearRect(0, 0, canvas.width, canvas.height);
-
-  // context draw new frame
   context.strokeRect(square.pos.x, square.pos.y, square.width, square.height);
   context.strokeRect(rect.pos.x, rect.pos.y, rect.width, rect.height);
   context.stroke();
 
-  // update positions
   rect.updatePos();
   square.updatePos();
 
-  // rect collisions with canvas borders
-  if (rect.borderBottom.y === canvas.height || rect.borderTop.y === 0) {
-    rect.vector.y *= -1;
-  }
-
-  if (rect.borderLeft.x === 0) {
-    rect.vector.x === 0 ? (rect.vector.x = 1) : (rect.vector.x *= -1);
-  }
-
-  if (rect.borderRight.x === canvas.width) {
-    rect.vector.x === 0 ? (rect.vector.x = -1) : (rect.vector.x *= -1);
-  }
-
-  // square collisions with canvas borders
-  if (square.borderBottom.y === canvas.height || square.borderTop.y === 0) {
-    square.vector.y *= -1;
-  }
-
-  if (square.borderLeft.x === 0) {
-    square.vector.x === 0 ? (square.vector.x = 1) : (square.vector.x *= -1);
-  }
-
-  if (square.borderRight.x === canvas.width) {
-    square.vector.x === 0 ? (square.vector.x = -1) : (square.vector.x *= -1);
-  }
+  handleCanvasCollisions(rect);
+  handleCanvasCollisions(square);
 
   // corner collision
   let C1 =
