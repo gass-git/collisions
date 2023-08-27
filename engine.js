@@ -1,26 +1,15 @@
 import Square from "./classes/square.js";
 import Rectangle from "./classes/rectangle.js";
 import handleCanvasCollisions from "./handlers/handleCanvasCollisions.js";
+import { paused } from "./handlers/handlePauseResume.js";
 
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
-
 const rect = new Rectangle(70, 40, 100, 2, 0, 1);
 const square = new Square(20, 300, 200, 1, 0);
+const cornerLength = 2;
 
-let cornerLength = 2;
-let pause = false;
-
-function start() {
-  pause = false;
-  window.requestAnimationFrame(gameLoop);
-}
-
-function stop() {
-  pause = true;
-}
-
-function gameLoop() {
+export function gameLoop() {
   context.clearRect(0, 0, canvas.width, canvas.height);
   context.strokeRect(square.pos.x, square.pos.y, square.width, square.height);
   context.strokeRect(rect.pos.x, rect.pos.y, rect.width, rect.height);
@@ -122,7 +111,5 @@ function gameLoop() {
     }
   }
 
-  pause ? null : window.requestAnimationFrame(gameLoop);
+  paused ? null : window.requestAnimationFrame(gameLoop);
 }
-
-export { start, stop };
