@@ -5,9 +5,7 @@ export default function handleCanvasCollisions(piece) {
 
   if (piece.borderLeft.x === 0) {
     piece.vector.x === 0 ? (piece.vector.x = 1) : (piece.vector.x *= -1);
-  }
-
-  if (piece.borderRight.x === canvas.width) {
+  } else if (piece.borderRight.x === canvas.width) {
     piece.vector.x === 0 ? (piece.vector.x = -1) : (piece.vector.x *= -1);
   }
 }
