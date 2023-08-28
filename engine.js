@@ -54,19 +54,8 @@ export function gameLoop() {
     if (square.vector.x === 0) square.vector.x = rect.vector.x;
     else square.vector.x *= -1;
   } else {
-    if (rect.borderTop.y === square.borderBottom.y) {
-      if (
-        rect.borderRight.x >= square.borderLeft.x &&
-        rect.borderLeft.x <= square.borderRight.x
-      ) {
-        rect.vector.y = -1 * rect.vector.y;
-        if (square.vector.y === 0) {
-          square.vector.y = -1;
-        } else {
-          square.vector.y *= -1;
-        }
-      }
-    }
+    rect.detectCollision("top", square);
+    square.detectCollision("bottom", rect);
 
     if (rect.borderBottom.y === square.borderTop.y) {
       if (
