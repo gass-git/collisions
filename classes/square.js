@@ -16,7 +16,7 @@ export default class Square {
    * - do a for loop inside detectCollisions instead of calling
    * all the cases from the gameLoop
    */
-  detectCollision(border, collider) {
+  detectCollision(collider) {
     const inHorizontalRange =
       collider.borderRight.x >= this.borderLeft.x &&
       collider.borderLeft.x <= this.borderRight.x;
@@ -25,34 +25,42 @@ export default class Square {
       collider.borderTop.y <= this.borderBottom.y &&
       collider.borderBottom.y >= this.borderTop.y;
 
-    switch (border) {
-      case "bottom":
-        if (collider.borderTop.y === this.borderBottom.y && inHorizontalRange) {
-          if (this.vector.y === 0) {
-            this.vector.y = -1;
-          } else {
-            this.vector.y *= -1;
+    ["top", "right", "bottom", "right"].forEach((side) => {
+      switch (side) {
+        case "bottom":
+          if (
+            collider.borderTop.y === this.borderBottom.y &&
+            inHorizontalRange
+          ) {
+            if (this.vector.y === 0) {
+              this.vector.y = -1;
+            } else {
+              this.vector.y *= -1;
+            }
           }
-        }
-        break;
-      case "top":
-        if (collider.borderBottom.y === this.borderTop.y && inHorizontalRange) {
-          this.vector.y === 0 ? (this.vector.y = 1) : (this.vector.y *= -1);
-        }
-        break;
-      case "right":
-        if (this.borderRight.x === collider.borderLeft.x && inVerticalRange) {
-          this.vector.x *= -1;
-        }
-        break;
-      case "left":
-        if (this.borderLeft.x === collider.borderRight.x && inVerticalRange) {
-          this.vector.x += -1;
-        }
-        break;
-      default:
-        null;
-    }
+          break;
+        case "top":
+          if (
+            collider.borderBottom.y === this.borderTop.y &&
+            inHorizontalRange
+          ) {
+            this.vector.y === 0 ? (this.vector.y = 1) : (this.vector.y *= -1);
+          }
+          break;
+        case "right":
+          if (this.borderRight.x === collider.borderLeft.x && inVerticalRange) {
+            this.vector.x *= -1;
+          }
+          break;
+        case "left":
+          if (this.borderLeft.x === collider.borderRight.x && inVerticalRange) {
+            this.vector.x += -1;
+          }
+          break;
+        default:
+          null;
+      }
+    });
   }
 
   get borderTop() {

@@ -54,15 +54,8 @@ export function gameLoop() {
     if (square.vector.x === 0) square.vector.x = rect.vector.x;
     else square.vector.x *= -1;
   } else {
-    square.detectCollision("top", rect);
-    square.detectCollision("right", rect);
-    square.detectCollision("left", rect);
-    square.detectCollision("bottom", rect);
-
-    rect.detectCollision("top", square);
-    rect.detectCollision("bottom", square);
-    rect.detectCollision("right", square);
-    rect.detectCollision("left", square);
+    square.detectCollision(rect);
+    rect.detectCollision(square);
   }
 
   paused ? null : window.requestAnimationFrame(gameLoop);
