@@ -54,50 +54,15 @@ export function gameLoop() {
     if (square.vector.x === 0) square.vector.x = rect.vector.x;
     else square.vector.x *= -1;
   } else {
-    rect.detectCollision("top", square);
+    square.detectCollision("top", rect);
+    square.detectCollision("right", rect);
+    square.detectCollision("left", rect);
     square.detectCollision("bottom", rect);
 
-    if (rect.borderBottom.y === square.borderTop.y) {
-      if (
-        rect.borderRight.x >= square.borderLeft.x &&
-        rect.borderLeft.x <= square.borderRight.x
-      ) {
-        rect.vector.y *= -1;
-        if (square.vector.y === 0) {
-          square.vector.y = 1;
-        } else {
-          square.vector.y = -1 * square.vector.y;
-        }
-      }
-    }
-
-    if (square.borderRight.x === rect.borderLeft.x) {
-      if (
-        rect.borderTop.y <= square.borderBottom.y &&
-        rect.borderBottom.y >= square.borderTop.y
-      ) {
-        square.vector.x *= -1;
-        if (rect.vector.x === 0) {
-          rect.vector.x = 1;
-        } else {
-          rect.vector.x = -1 * rect.vector.x;
-        }
-      }
-    }
-
-    if (rect.borderRight.x === square.borderLeft.x) {
-      if (
-        rect.borderTop.y <= square.borderBottom.y &&
-        rect.borderBottom.y >= square.borderTop.y
-      ) {
-        square.vector.x *= -1;
-        if (rect.vector.x === 0) {
-          rect.vector.x = -1;
-        } else {
-          rect.vector.x = -1 * rect.vector.x;
-        }
-      }
-    }
+    rect.detectCollision("top", square);
+    rect.detectCollision("bottom", square);
+    rect.detectCollision("right", square);
+    rect.detectCollision("left", square);
   }
 
   paused ? null : window.requestAnimationFrame(gameLoop);
