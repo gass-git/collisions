@@ -14,10 +14,8 @@ export default class Rectangle {
   /**
    * TODO
    * - add conditions to when the vector Y and X are 0
-   * - do a for loop inside detectCollisions instead of calling
-   * all the cases from the gameLoop
    */
-  detectCollision(collider) {
+  detectSidesCollisions(collider) {
     const inHorizontalRange =
       this.borderRight.x >= collider.borderLeft.x &&
       this.borderLeft.x <= collider.borderRight.x;
@@ -26,7 +24,7 @@ export default class Rectangle {
       this.borderTop.y <= collider.borderBottom.y &&
       this.borderBottom.y >= collider.borderTop.y;
 
-    ["top", "right", "bottom", "right"].forEach((side) => {
+    ["top", "right", "bottom", "left"].forEach((side) => {
       switch (side) {
         case "top":
           if (

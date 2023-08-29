@@ -54,8 +54,8 @@ export function gameLoop() {
     if (square.vector.x === 0) square.vector.x = rect.vector.x;
     else square.vector.x *= -1;
   } else {
-    square.detectCollision(rect);
-    rect.detectCollision(square);
+    square.detectSidesCollisions(rect);
+    rect.detectSidesCollisions(square);
   }
 
   paused ? null : window.requestAnimationFrame(gameLoop);

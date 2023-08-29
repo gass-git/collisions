@@ -13,10 +13,8 @@ export default class Square {
   /**
    * TODO
    * - add conditions to when the vector Y and X are 0
-   * - do a for loop inside detectCollisions instead of calling
-   * all the cases from the gameLoop
    */
-  detectCollision(collider) {
+  detectSidesCollisions(collider) {
     const inHorizontalRange =
       collider.borderRight.x >= this.borderLeft.x &&
       collider.borderLeft.x <= this.borderRight.x;
@@ -25,7 +23,7 @@ export default class Square {
       collider.borderTop.y <= this.borderBottom.y &&
       collider.borderBottom.y >= this.borderTop.y;
 
-    ["top", "right", "bottom", "right"].forEach((side) => {
+    ["top", "right", "bottom", "left"].forEach((side) => {
       switch (side) {
         case "bottom":
           if (
