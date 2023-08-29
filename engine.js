@@ -2,24 +2,23 @@ import Square from "./classes/square.js";
 import Rectangle from "./classes/rectangle.js";
 import handleCanvasCollisions from "./handlers/handleCanvasCollisions.js";
 import { paused } from "./handlers/handlePauseResume.js";
+import handleSideCollisions from "./handlers/handleSideCollisions.js";
 
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
 const rect = new Rectangle(70, 40, 100, 2, 0, 1);
 const square = new Square(20, 300, 200, 1, 0);
+const objects = [rect, square];
 const cornerLength = 2;
 
 export function gameLoop() {
   context.clearRect(0, 0, canvas.width, canvas.height);
-  context.strokeRect(square.pos.x, square.pos.y, square.width, square.height);
-  context.strokeRect(rect.pos.x, rect.pos.y, rect.width, rect.height);
-  context.stroke();
 
-  rect.updatePos();
-  square.updatePos();
-
-  handleCanvasCollisions(rect);
-  handleCanvasCollisions(square);
+  objects.forEach((obj) => {
+    context.strokeRect(obj.pos.x, obj.pos.y, obj.width, obj.height);
+    obj.updatePos();
+    handleCanvasCollisions(obj);
+  });
 
   // conditions for corner collisions
   const C = [
@@ -54,8 +53,8 @@ export function gameLoop() {
     if (square.vector.x === 0) square.vector.x = rect.vector.x;
     else square.vector.x *= -1;
   } else {
-    square.detectSidesCollisions(rect);
-    rect.detectSidesCollisions(square);
+    handleSideCollisions(square, rect);
+    handleSideCollisions(rect, square);
   }
 
   paused ? null : window.requestAnimationFrame(gameLoop);
