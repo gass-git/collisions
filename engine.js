@@ -21,26 +21,39 @@ export function gameLoop() {
   });
 
   // conditions for corner collisions
+
+  const inTopLeftCorner =
+    (rect.borderTop.y === square.borderBottom.y &&
+      Math.abs(rect.borderLeft.x - square.borderRight.x) <= cornerLength) ||
+    (rect.borderLeft.x === square.borderRight.x &&
+      Math.abs(rect.borderTop.y - square.borderBottom.y) <= cornerLength);
+
+  const inTopRightCorner =
+    (rect.borderTop.y === square.borderBottom.y &&
+      Math.abs(rect.borderRight.x - square.borderLeft.x) <= cornerLength) ||
+    (rect.borderRight.x === square.borderLeft.x &&
+      Math.abs(rect.borderTop.y - square.borderBottom.y) <= cornerLength);
+
+  const inBottomLeftCorner =
+    (rect.borderBottom.y === square.borderTop.y &&
+      Math.abs(rect.borderLeft.x - square.borderRight.x) <= cornerLength) ||
+    (rect.borderLeft.x === square.borderRight.x &&
+      Math.abs(rect.borderBottom.y - square.borderTop.y) <= cornerLength);
+
+  const inBottomRightCorner =
+    (rect.borderBottom.y === square.borderTop.y &&
+      Math.abs(rect.borderRight.x - square.borderLeft.x) <= cornerLength) ||
+    (rect.borderRight.x === square.borderLeft.x &&
+      Math.abs(rect.borderBottom.y - square.borderTop.y) <= cornerLength);
+
   const C = [
-    rect.borderTop.y === square.borderBottom.y &&
-      Math.abs(rect.borderLeft.x - square.borderRight.x) <= cornerLength,
-    rect.borderTop.y === square.borderBottom.y &&
-      Math.abs(square.borderLeft.x - rect.borderRight.x) <= cornerLength,
-    rect.borderBottom.y === square.borderTop.y &&
-      Math.abs(rect.borderLeft.x - square.borderRight.x) <= cornerLength,
-    rect.borderBottom.y === square.borderTop.y &&
-      Math.abs(square.borderLeft.x - rect.borderRight.x) <= cornerLength,
-    rect.borderLeft.x === square.borderRight.x &&
-      Math.abs(square.borderBottom.y - rect.borderTop.y) <= cornerLength,
-    rect.borderRight.x === square.borderLeft.x &&
-      Math.abs(square.borderBottom.y - rect.borderTop.y) <= cornerLength,
-    rect.borderLeft.x === square.borderRight.x &&
-      Math.abs(rect.borderBottom.y - square.borderTop.y) <= cornerLength,
-    rect.borderRight.x === square.borderLeft.x &&
-      Math.abs(rect.borderBottom.y - square.borderTop.y) <= cornerLength,
+    inTopLeftCorner,
+    inTopLeftCorner,
+    inBottomLeftCorner,
+    inBottomRightCorner,
   ];
 
-  if (C[0] || C[1] || C[2] || C[3] || C[4] || C[5] || C[6] || C[7]) {
+  if (C[0] || C[1] || C[2] || C[3]) {
     if (rect.vector.y === 0) rect.vector.y = square.vector.y;
     else rect.vector.y *= -1;
 
