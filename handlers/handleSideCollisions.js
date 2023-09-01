@@ -1,4 +1,4 @@
-export default function detectSidesCollisions(obj, collider) {
+export default function detectSidesCollisions(obj, collider, speed) {
   const inHorizontalRange =
     obj.borderRight.x >= collider.borderLeft.x &&
     obj.borderLeft.x <= collider.borderRight.x;
@@ -11,22 +11,30 @@ export default function detectSidesCollisions(obj, collider) {
     switch (side) {
       case "top":
         if (obj.borderTop.y === collider.borderBottom.y && inHorizontalRange) {
-          obj.vector.y === 0 ? (obj.vector.y = 1) : (obj.vector.y *= -1);
+          obj.vector.y === 0
+            ? (obj.vector.y = 1 * speed)
+            : (obj.vector.y *= -1);
         }
         break;
       case "bottom":
         if (obj.borderBottom.y === collider.borderTop.y && inHorizontalRange) {
-          obj.vector.y === 0 ? (obj.vector.y = -1) : (obj.vector.y *= -1);
+          obj.vector.y === 0
+            ? (obj.vector.y = -1 * speed)
+            : (obj.vector.y *= -1);
         }
         break;
       case "right":
         if (obj.borderRight.x === collider.borderLeft.x && inVerticalRange) {
-          obj.vector.x === 0 ? (obj.vector.x = 1) : (obj.vector.x *= -1);
+          obj.vector.x === 0
+            ? (obj.vector.x = 1 * speed)
+            : (obj.vector.x *= -1);
         }
         break;
       case "left":
         if (obj.borderLeft.x === collider.borderRight.x && inVerticalRange) {
-          obj.vector.x === 0 ? (obj.vector.x = -1) : (obj.vector.x *= -1);
+          obj.vector.x === 0
+            ? (obj.vector.x = -1 * speed)
+            : (obj.vector.x *= -1);
         }
         break;
 

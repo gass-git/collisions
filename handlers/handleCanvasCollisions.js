@@ -4,8 +4,12 @@ export default function handleCanvasCollisions(piece) {
   }
 
   if (piece.borderLeft.x === 0) {
-    piece.vector.x === 0 ? (piece.vector.x = 1) : (piece.vector.x *= -1);
+    piece.vector.x === 0
+      ? (piece.vector.x = 1 * speed)
+      : (piece.vector.x *= -1);
   } else if (piece.borderRight.x === canvas.width) {
-    piece.vector.x === 0 ? (piece.vector.x = -1) : (piece.vector.x *= -1);
+    piece.vector.x === 0
+      ? (piece.vector.x = -1 * speed)
+      : (piece.vector.x *= -1);
   }
 }

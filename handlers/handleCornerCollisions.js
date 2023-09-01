@@ -33,14 +33,14 @@ function cornerCollision(obj, collider, cornerLength) {
   return C[0] || C[1] || C[2] || C[3];
 }
 
-function handleCornerCollisions(obj, collider) {
-  if (obj.vector.y === 0) obj.vector.y = collider.vector.y;
+function handleCornerCollisions(obj, collider, speed) {
+  if (obj.vector.y === 0) obj.vector.y = collider.vector.y * speed;
   else obj.vector.y *= -1;
 
   if (obj.vector.x === 0) obj.vector.x = collider.vector.x;
   else obj.vector.x *= -1;
 
-  if (collider.vector.y === 0) collider.vector.y = obj.vector.y;
+  if (collider.vector.y === 0) collider.vector.y = obj.vector.y * speed;
   else collider.vector.y *= -1;
 
   if (collider.vector.x === 0) collider.vector.x = obj.vector.x;
