@@ -15,7 +15,7 @@ import {
 
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
-const speed = 1.8;
+const speed = 3.8;
 const rect = new Rectangle(70, 40, 100, 2, 0, speed);
 const square = new Square(20, 300, 200, speed, 0);
 const objects = [rect, square];
