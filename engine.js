@@ -21,6 +21,49 @@ export function gameLoop() {
     rect.collisionBody.cornerDelta,
     rect.collisionBody.cornerDelta
   );
+  context.strokeRect(
+    rect.collisionBody.cornerArea.top.right.x1,
+    rect.collisionBody.cornerArea.top.right.y1,
+    rect.collisionBody.cornerDelta,
+    rect.collisionBody.cornerDelta
+  );
+  context.strokeRect(
+    rect.collisionBody.cornerArea.bottom.left.x1,
+    rect.collisionBody.cornerArea.bottom.left.y1,
+    rect.collisionBody.cornerDelta,
+    rect.collisionBody.cornerDelta
+  );
+  context.strokeRect(
+    rect.collisionBody.cornerArea.bottom.right.x1,
+    rect.collisionBody.cornerArea.bottom.right.y1,
+    rect.collisionBody.cornerDelta,
+    rect.collisionBody.cornerDelta
+  );
+  context.strokeRect(
+    rect.collisionBody.borderArea.top.x1,
+    rect.collisionBody.borderArea.top.y1,
+    rect.collisionBody.borderArea.top.width,
+    rect.collisionBody.borderArea.top.height
+  );
+  context.strokeRect(
+    rect.collisionBody.borderArea.right.x1,
+    rect.collisionBody.borderArea.right.y1,
+    rect.collisionBody.borderArea.right.width,
+    rect.collisionBody.borderArea.right.height
+  );
+  context.strokeRect(
+    rect.collisionBody.borderArea.bottom.x1,
+    rect.collisionBody.borderArea.bottom.y1,
+    rect.collisionBody.borderArea.bottom.width,
+    rect.collisionBody.borderArea.bottom.height
+  );
+  context.strokeRect(
+    rect.collisionBody.borderArea.left.x1,
+    rect.collisionBody.borderArea.left.y1,
+    rect.collisionBody.borderArea.left.width,
+    rect.collisionBody.borderArea.left.height
+  );
+
   rect.updatePos();
 
   handleCanvasCollisions(rect);

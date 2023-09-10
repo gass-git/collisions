@@ -25,7 +25,7 @@ export default class RectangleCollisionBody {
       bottom: {
         left: {
           x1: this.pos.x,
-          y1: this.pos.x + this.height - this.cornerDelta,
+          y1: this.pos.y + this.height - this.cornerDelta,
           x2: this.pos.x + this.cornerDelta,
           y2: this.pos.y + this.height,
         },
@@ -46,24 +46,32 @@ export default class RectangleCollisionBody {
         y1: this.pos.y,
         x2: this.pos.x + this.cornerDelta,
         y2: this.pos.y + this.cornerDelta,
+        width: this.width - this.cornerDelta * 2,
+        height: this.cornerDelta,
       },
       right: {
         x1: this.pos.x + this.width - this.cornerDelta,
         y1: this.pos.y + this.cornerDelta,
         x2: this.pos.x + this.width,
         y2: this.pos.y + this.height - this.cornerDelta,
+        width: this.cornerDelta,
+        height: this.height - this.cornerDelta * 2,
       },
       bottom: {
         x1: this.pos.x + this.cornerDelta,
         y1: this.pos.y + this.height - this.cornerDelta,
         x2: this.pos.x + this.width - this.cornerDelta,
         y2: this.pos.y + this.height,
+        width: this.width - this.cornerDelta * 2,
+        height: this.cornerDelta,
       },
       left: {
         x1: this.pos.x,
         y1: this.pos.y + this.cornerDelta,
         x2: this.pos.x + this.cornerDelta,
         y2: this.pos.y + this.height - this.cornerDelta,
+        width: this.cornerDelta,
+        height: this.height - this.cornerDelta * 2,
       },
     };
   }
