@@ -1,4 +1,5 @@
 import RectangleCollisionBody from "./rectangleCollisionBody.js";
+import inArea from "../composables/inArea.js";
 
 export default class Rectangle {
   constructor(width, height, posX, posY, vectorX, vectorY) {
@@ -22,19 +23,44 @@ export default class Rectangle {
     this.collisionBody.pos.y = this.pos.y;
   }
 
-  get borderTop() {
-    return { y: this.pos.y };
-  }
+  checkCanvasCollisions(canvas) {
+    // corner area (bottom left)
+    if (
+      inArea(
+        canvas.height,
+        this.collisionBody.cornerArea.bottom.left.y1,
+        this.collisionBody.cornerArea.bottom.left.y2
+      )
+    ) {
+      console.log("collision: corner area (bottom left)");
+    }
 
-  get borderBottom() {
-    return { y: this.pos.y + this.height };
-  }
+    // border area (bottom)
+    if (
+      inArea(
+        canvas.height,
+        this.collisionBody.borderArea.bottom.y1,
+        this.collisionBody.borderArea.bottom.y2
+      )
+    ) {
+      console.log("collision: border area (bottom)");
+      this.vector.y *= -1; // <-- just for testing
+      this.collisionBody.inCollision.borderArea.bottom = true;
 
-  get borderLeft() {
-    return { x: this.pos.x };
-  }
+      setTimeout(() => {
+        this.collisionBody.inCollision.borderArea.bottom = false;
+      }, 200);
+    }
 
-  get borderRight() {
-    return { x: this.pos.x + this.width };
+    // corner area (bottom right)
+    if (
+      inArea(
+        canvas.height,
+        this.collisionBody.cornerArea.bottom.right.y1,
+        this.collisionBody.cornerArea.bottom.right.y2
+      )
+    ) {
+      console.log("collision: corner area (bottom right)");
+    }
   }
 }

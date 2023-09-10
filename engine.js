@@ -63,10 +63,18 @@ export function gameLoop() {
     rect.collisionBody.borderArea.left.width,
     rect.collisionBody.borderArea.left.height
   );
+  if (rect.collisionBody.inCollision.borderArea.bottom) {
+    context.fillStyle = "yellow";
+    context.fillRect(
+      rect.collisionBody.borderArea.bottom.x1,
+      rect.collisionBody.borderArea.bottom.y1,
+      rect.collisionBody.borderArea.bottom.width,
+      rect.collisionBody.borderArea.bottom.height
+    );
+  }
 
   rect.updatePos();
-
-  handleCanvasCollisions(rect);
+  rect.checkCanvasCollisions(canvas);
 
   paused ? null : window.requestAnimationFrame(gameLoop);
 }
