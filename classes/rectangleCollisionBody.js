@@ -6,7 +6,7 @@ export default class RectangleCollisionBody {
     this.cornerDelta = cornerDelta;
   }
 
-  get corner() {
+  get cornerArea() {
     return {
       top: {
         left: {
@@ -39,12 +39,32 @@ export default class RectangleCollisionBody {
     };
   }
 
-  get border() {
+  get borderArea() {
     return {
-      top: {},
-      right: {},
-      bottom: {},
-      left: {},
+      top: {
+        x1: this.pos.x + this.cornerDelta,
+        y1: this.pos.y,
+        x2: this.pos.x + this.cornerDelta,
+        y2: this.pos.y + this.cornerDelta,
+      },
+      right: {
+        x1: this.pos.x + this.width - this.cornerDelta,
+        y1: this.pos.y + this.cornerDelta,
+        x2: this.pos.x + this.width,
+        y2: this.pos.y + this.height - this.cornerDelta,
+      },
+      bottom: {
+        x1: this.pos.x + this.cornerDelta,
+        y1: this.pos.y + this.height - this.cornerDelta,
+        x2: this.pos.x + this.width - this.cornerDelta,
+        y2: this.pos.y + this.height,
+      },
+      left: {
+        x1: this.pos.x,
+        y1: this.pos.y + this.cornerDelta,
+        x2: this.pos.x + this.cornerDelta,
+        y2: this.pos.y + this.height - this.cornerDelta,
+      },
     };
   }
 }
