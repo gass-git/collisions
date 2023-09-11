@@ -12,7 +12,7 @@ export default class Rectangle {
       height,
       posX,
       posY,
-      5
+      15
     );
   }
 
@@ -33,6 +33,11 @@ export default class Rectangle {
       )
     ) {
       console.log("collision: corner area (bottom left)");
+      this.collisionBody.inCollision.cornerArea.bottomLeft = true;
+
+      setTimeout(() => {
+        this.collisionBody.inCollision.cornerArea.bottomLeft = false;
+      }, 200);
     }
 
     // border area (bottom)
@@ -44,7 +49,7 @@ export default class Rectangle {
       )
     ) {
       console.log("collision: border area (bottom)");
-      this.vector.y *= -1; // <-- just for testing
+      this.vector.y *= -1;
       this.collisionBody.inCollision.borderArea.bottom = true;
 
       setTimeout(() => {
@@ -58,9 +63,35 @@ export default class Rectangle {
         canvas.height,
         this.collisionBody.cornerArea.bottom.right.y1,
         this.collisionBody.cornerArea.bottom.right.y2
+      ) ||
+      inArea(
+        canvas.width,
+        this.collisionBody.cornerArea.bottom.right.x1,
+        this.collisionBody.cornerArea.bottom.right.x2
       )
     ) {
       console.log("collision: corner area (bottom right)");
+      this.collisionBody.inCollision.cornerArea.bottomRight = true;
+
+      setTimeout(() => {
+        this.collisionBody.inCollision.cornerArea.bottomRight = false;
+      }, 200);
+    }
+
+    // border area (right)
+    if (
+      inArea(
+        canvas.width,
+        this.collisionBody.borderArea.right.x1,
+        this.collisionBody.borderArea.right.x2
+      )
+    ) {
+      this.vector.x *= -1;
+      this.collisionBody.inCollision.borderArea.right = true;
+
+      setTimeout(() => {
+        this.collisionBody.inCollision.borderArea.right = false;
+      }, 200);
     }
   }
 }

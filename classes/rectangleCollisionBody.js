@@ -5,6 +5,12 @@ export default class RectangleCollisionBody {
     this.height = height;
     this.cornerDelta = cornerDelta;
     this.inCollision = {
+      cornerArea: {
+        topLeft: false,
+        topRight: false,
+        bottomRight: false,
+        bottomLeft: false,
+      },
       borderArea: {
         top: false,
         right: false,

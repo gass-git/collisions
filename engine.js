@@ -8,8 +8,9 @@ import {
 
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
-const speed = 1;
-const rect = new Rectangle(50, 50, 0, 0, speed, speed);
+const speed = 2;
+const rect = new Rectangle(100, 100, 0, 0, speed, speed);
+const red = `rgb(255,160,122)`;
 
 export function gameLoop() {
   context.clearRect(0, 0, canvas.width, canvas.height);
@@ -33,6 +34,24 @@ export function gameLoop() {
     rect.collisionBody.cornerDelta,
     rect.collisionBody.cornerDelta
   );
+  if (rect.collisionBody.inCollision.cornerArea.bottomLeft) {
+    context.fillStyle = red;
+    context.fillRect(
+      rect.collisionBody.cornerArea.bottom.left.x1,
+      rect.collisionBody.cornerArea.bottom.left.y1,
+      rect.collisionBody.cornerDelta,
+      rect.collisionBody.cornerDelta
+    );
+  }
+  if (rect.collisionBody.inCollision.cornerArea.bottomRight) {
+    context.fillStyle = red;
+    context.fillRect(
+      rect.collisionBody.cornerArea.bottom.right.x1,
+      rect.collisionBody.cornerArea.bottom.right.y1,
+      rect.collisionBody.cornerDelta,
+      rect.collisionBody.cornerDelta
+    );
+  }
   context.strokeRect(
     rect.collisionBody.cornerArea.bottom.right.x1,
     rect.collisionBody.cornerArea.bottom.right.y1,
@@ -45,6 +64,15 @@ export function gameLoop() {
     rect.collisionBody.borderArea.top.width,
     rect.collisionBody.borderArea.top.height
   );
+  if (rect.collisionBody.inCollision.borderArea.right) {
+    context.fillStyle = "yellow";
+    context.fillRect(
+      rect.collisionBody.borderArea.right.x1,
+      rect.collisionBody.borderArea.right.y1,
+      rect.collisionBody.borderArea.right.width,
+      rect.collisionBody.borderArea.right.height
+    );
+  }
   context.strokeRect(
     rect.collisionBody.borderArea.right.x1,
     rect.collisionBody.borderArea.right.y1,
