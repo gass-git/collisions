@@ -30,6 +30,11 @@ export default class Rectangle {
         canvas.height,
         this.collisionBody.cornerArea.bottom.left.y1,
         this.collisionBody.cornerArea.bottom.left.y2
+      ) ||
+      inArea(
+        0,
+        this.collisionBody.cornerArea.bottom.left.x1,
+        this.collisionBody.cornerArea.bottom.left.x2
       )
     ) {
       console.log("collision: corner area (bottom left)");
@@ -91,6 +96,80 @@ export default class Rectangle {
 
       setTimeout(() => {
         this.collisionBody.inCollision.borderArea.right = false;
+      }, 200);
+    }
+
+    // corner area (top right)
+    if (
+      inArea(
+        canvas.width,
+        this.collisionBody.cornerArea.top.right.x1,
+        this.collisionBody.cornerArea.top.right.x2
+      ) ||
+      inArea(
+        0,
+        this.collisionBody.cornerArea.top.right.y1,
+        this.collisionBody.cornerArea.top.right.y2
+      )
+    ) {
+      console.log(`collision corner area top right`);
+      this.collisionBody.inCollision.cornerArea.topRight = true;
+
+      setTimeout(() => {
+        this.collisionBody.inCollision.cornerArea.topRight = false;
+      }, 200);
+    }
+
+    // border area (top)
+    if (
+      inArea(
+        0,
+        this.collisionBody.borderArea.top.y1,
+        this.collisionBody.borderArea.top.y2
+      )
+    ) {
+      this.vector.y *= -1;
+      this.collisionBody.inCollision.borderArea.top = true;
+
+      setTimeout(() => {
+        this.collisionBody.inCollision.borderArea.top = false;
+      }, 200);
+    }
+
+    // border area (left)
+    if (
+      inArea(
+        0,
+        this.collisionBody.borderArea.left.x1,
+        this.collisionBody.borderArea.left.x2
+      )
+    ) {
+      this.vector.x *= -1;
+
+      this.collisionBody.inCollision.borderArea.left = true;
+
+      setTimeout(() => {
+        this.collisionBody.inCollision.borderArea.left = false;
+      }, 200);
+    }
+
+    // corner area (top left)
+    if (
+      inArea(
+        0,
+        this.collisionBody.cornerArea.top.left.x1,
+        this.collisionBody.cornerArea.top.left.x2
+      ) ||
+      inArea(
+        0,
+        this.collisionBody.cornerArea.top.left.y1,
+        this.collisionBody.cornerArea.top.left.y2
+      )
+    ) {
+      this.collisionBody.inCollision.cornerArea.topLeft = true;
+
+      setTimeout(() => {
+        this.collisionBody.inCollision.cornerArea.topLeft = false;
       }, 200);
     }
   }

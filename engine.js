@@ -16,12 +16,30 @@ export function gameLoop() {
   context.clearRect(0, 0, canvas.width, canvas.height);
 
   context.strokeRect(rect.pos.x, rect.pos.y, rect.width, rect.height);
+  if (rect.collisionBody.inCollision.cornerArea.topLeft) {
+    context.fillStyle = red;
+    context.fillRect(
+      rect.collisionBody.cornerArea.top.left.x1,
+      rect.collisionBody.cornerArea.top.left.y1,
+      rect.collisionBody.cornerDelta,
+      rect.collisionBody.cornerDelta
+    );
+  }
   context.strokeRect(
     rect.collisionBody.cornerArea.top.left.x1,
     rect.collisionBody.cornerArea.top.left.y1,
     rect.collisionBody.cornerDelta,
     rect.collisionBody.cornerDelta
   );
+  if (rect.collisionBody.inCollision.cornerArea.topRight) {
+    context.fillStyle = red;
+    context.fillRect(
+      rect.collisionBody.cornerArea.top.right.x1,
+      rect.collisionBody.cornerArea.top.right.y1,
+      rect.collisionBody.cornerDelta,
+      rect.collisionBody.cornerDelta
+    );
+  }
   context.strokeRect(
     rect.collisionBody.cornerArea.top.right.x1,
     rect.collisionBody.cornerArea.top.right.y1,
@@ -58,6 +76,15 @@ export function gameLoop() {
     rect.collisionBody.cornerDelta,
     rect.collisionBody.cornerDelta
   );
+  if (rect.collisionBody.inCollision.borderArea.top) {
+    context.fillStyle = "yellow";
+    context.fillRect(
+      rect.collisionBody.borderArea.top.x1,
+      rect.collisionBody.borderArea.top.y1,
+      rect.collisionBody.borderArea.top.width,
+      rect.collisionBody.borderArea.top.height
+    );
+  }
   context.strokeRect(
     rect.collisionBody.borderArea.top.x1,
     rect.collisionBody.borderArea.top.y1,
@@ -85,6 +112,15 @@ export function gameLoop() {
     rect.collisionBody.borderArea.bottom.width,
     rect.collisionBody.borderArea.bottom.height
   );
+  if (rect.collisionBody.inCollision.borderArea.left) {
+    context.fillStyle = "yellow";
+    context.fillRect(
+      rect.collisionBody.borderArea.left.x1,
+      rect.collisionBody.borderArea.left.y1,
+      rect.collisionBody.borderArea.left.width,
+      rect.collisionBody.borderArea.left.height
+    );
+  }
   context.strokeRect(
     rect.collisionBody.borderArea.left.x1,
     rect.collisionBody.borderArea.left.y1,

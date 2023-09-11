@@ -32,7 +32,7 @@ export default class RectangleCollisionBody {
         right: {
           x1: this.pos.x + this.width - this.cornerDelta,
           y1: this.pos.y,
-          x2: this.width,
+          x2: this.pos.x + this.width,
           y2: this.pos.y + this.cornerDelta,
         },
       },
