@@ -4,15 +4,21 @@ import handleDrawing from "./handlers/handleDrawing.js";
 
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
-const speed = 4;
-const rect = new Rectangle(100, 100, 0, 0, speed, speed);
+const speed = 2;
+const rectOne = new Rectangle(100, 100, 100, 190, speed / 2, 0);
+const rectTwo = new Rectangle(100, 100, 250, 200, 0, 0);
 
 export function gameLoop() {
   context.clearRect(0, 0, canvas.width, canvas.height);
 
-  handleDrawing(rect, context);
-  rect.updatePos();
-  rect.checkCanvasCollisions(canvas);
+  handleDrawing(rectOne, context);
+  handleDrawing(rectTwo, context);
+  rectOne.updatePos();
+  rectOne.checkCanvasCollisions(canvas);
+  rectTwo.updatePos();
+  rectTwo.checkCanvasCollisions(canvas);
+
+  rectOne.checkObjectsCollisions(rectTwo, speed);
 
   paused ? null : window.requestAnimationFrame(gameLoop);
 }
