@@ -367,29 +367,6 @@ export default class Rectangle {
     }
 
     // border area (top)
-
-    console.log(
-      `bottomX: ${object.collisionBody.borderArea.bottom.x1}
-        topX1: ${this.collisionBody.borderArea.top.x1}
-        topX2: ${this.collisionBody.borderArea.top.x2}`
-    );
-    console.log(
-      `${inArea(
-        object.collisionBody.borderArea.bottom.y2,
-        this.collisionBody.borderArea.top.y1,
-        this.collisionBody.borderArea.top.y2
-      )} 
-      ${inArea(
-        object.collisionBody.borderArea.bottom.x1,
-        this.collisionBody.borderArea.top.x1,
-        this.collisionBody.borderArea.top.x2
-      )} 
-      ${inArea(
-        object.collisionBody.borderArea.bottom.x2,
-        this.collisionBody.borderArea.top.x1,
-        this.collisionBody.borderArea.top.x2
-      )}`
-    );
     if (
       inArea(
         object.collisionBody.borderArea.bottom.y2,
