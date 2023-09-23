@@ -37,7 +37,6 @@ export default class Rectangle {
         this.collisionBody.cornerArea.bottom.left.x2
       )
     ) {
-      console.log("collision: corner area (bottom left)");
       this.collisionBody.inCollision.cornerArea.bottomLeft = true;
 
       setTimeout(() => {
@@ -53,7 +52,6 @@ export default class Rectangle {
         this.collisionBody.borderArea.bottom.y2
       )
     ) {
-      console.log("collision: border area (bottom)");
       this.vector.y *= -1;
       this.collisionBody.inCollision.borderArea.bottom = true;
 
@@ -75,7 +73,6 @@ export default class Rectangle {
         this.collisionBody.cornerArea.bottom.right.x2
       )
     ) {
-      console.log("collision: corner area (bottom right)");
       this.collisionBody.inCollision.cornerArea.bottomRight = true;
 
       setTimeout(() => {
@@ -112,7 +109,6 @@ export default class Rectangle {
         this.collisionBody.cornerArea.top.right.y2
       )
     ) {
-      console.log(`collision corner area top right`);
       this.collisionBody.inCollision.cornerArea.topRight = true;
 
       setTimeout(() => {
@@ -206,7 +202,7 @@ export default class Rectangle {
         ))
     ) {
       this.vector.x *= -1;
-      console.log("border right collision with another object");
+
       this.collisionBody.inCollision.borderArea.right = true;
 
       setTimeout(() => {
@@ -233,7 +229,6 @@ export default class Rectangle {
         ))
     ) {
       this.vector.x *= -1;
-      console.log("border left collision with another object");
       this.collisionBody.inCollision.borderArea.left = true;
 
       setTimeout(() => {
@@ -385,7 +380,6 @@ export default class Rectangle {
         ))
     ) {
       this.vector.y *= -1;
-      console.log(`top collision`);
       this.collisionBody.inCollision.borderArea.top = true;
 
       setTimeout(() => {

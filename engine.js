@@ -4,8 +4,8 @@ import handleDrawing from "./handlers/handleDrawing.js";
 
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
-const speed = 1;
-const rectOne = new Rectangle(100, 100, 202, 100, speed / 2, speed);
+const speed = 3;
+const rectOne = new Rectangle(100, 100, 202, 100, speed / 3, speed);
 const rectTwo = new Rectangle(100, 100, 250, 290, 0, speed / 2);
 
 export function gameLoop() {
