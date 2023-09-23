@@ -313,5 +313,30 @@ export default class Rectangle {
         this.collisionBody.inCollision.cornerArea.bottomRight = false;
       }, 200);
     }
+
+    // corner top (left)
+    if (
+      inArea(
+        object.collisionBody.cornerArea.bottom.right.x2,
+        this.collisionBody.cornerArea.top.left.x1,
+        this.collisionBody.cornerArea.top.left.x2
+      ) &&
+      (inArea(
+        object.collisionBody.cornerArea.bottom.right.y2,
+        this.collisionBody.cornerArea.top.left.y1,
+        this.collisionBody.cornerArea.top.left.y2
+      ) ||
+        inArea(
+          object.collisionBody.cornerArea.bottom.right.y1,
+          this.collisionBody.cornerArea.top.left.y1,
+          this.collisionBody.cornerArea.top.left.y2
+        ))
+    ) {
+      this.collisionBody.inCollision.cornerArea.topLeft = true;
+
+      setTimeout(() => {
+        this.collisionBody.inCollision.cornerArea.topLeft = false;
+      }, 200);
+    }
   }
 }
