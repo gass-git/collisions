@@ -149,19 +149,8 @@ function handleCanvasCollisions(objects, canvas) {
   });
 }
 
-/**
- * @note
- *
- * once the code works for one object, change
- * the @param object to @param objects
- *
- * the @param objects will be an array of all the rectangle
- * instances
- *
- * ** detect and react to: corner to corner and border to border collisions.
- */
 function handleObjectsCollisions(objects, speed) {
-  objects.forEach((obj, index) => {
+  objects.forEach((obj) => {
     let colliders = objects.filter((el) => el !== obj);
 
     colliders.forEach((collider) => {
@@ -183,7 +172,11 @@ function handleObjectsCollisions(objects, speed) {
             obj.collisionBody.borderArea.right.y2
           ))
       ) {
-        obj.vector.x *= -1;
+        if (obj.vector.x === 0) {
+          obj.vector.x = speed * -1;
+        } else {
+          obj.vector.x *= -1;
+        }
 
         obj.collisionBody.inCollision.borderArea.right = true;
 
@@ -210,7 +203,11 @@ function handleObjectsCollisions(objects, speed) {
             obj.collisionBody.borderArea.left.y2
           ))
       ) {
-        obj.vector.x *= -1;
+        if (obj.vector.x === 0) {
+          obj.vector.x = speed;
+        } else {
+          obj.vector.x *= -1;
+        }
         obj.collisionBody.inCollision.borderArea.left = true;
 
         setTimeout(() => {
@@ -309,6 +306,18 @@ function handleObjectsCollisions(objects, speed) {
             obj.collisionBody.cornerArea.top.left.y2
           ))
       ) {
+        if (obj.vector.x === 0) {
+          obj.vector.x = speed;
+        } else {
+          obj.vector.x *= -1;
+        }
+
+        if (obj.vector.y === 0) {
+          obj.vector.y = speed;
+        } else if (obj.vector.y < 0) {
+          obj.vector.y *= -1;
+        }
+
         obj.collisionBody.inCollision.cornerArea.top.left = true;
 
         setTimeout(() => {
@@ -334,7 +343,11 @@ function handleObjectsCollisions(objects, speed) {
             obj.collisionBody.borderArea.bottom.x2
           ))
       ) {
-        obj.vector.y *= -1;
+        if (obj.vector.y === 0) {
+          obj.vector.y = speed * -1;
+        } else {
+          obj.vector.y *= -1;
+        }
 
         obj.collisionBody.inCollision.borderArea.bottom = true;
 
@@ -361,7 +374,11 @@ function handleObjectsCollisions(objects, speed) {
             obj.collisionBody.borderArea.top.x2
           ))
       ) {
-        obj.vector.y *= -1;
+        if (obj.vector.y === 0) {
+          obj.vector.y = speed * -1;
+        } else {
+          obj.vector.y *= -1;
+        }
         obj.collisionBody.inCollision.borderArea.top = true;
 
         setTimeout(() => {
