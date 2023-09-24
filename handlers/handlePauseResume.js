@@ -1,7 +1,5 @@
 import { gameLoop } from "./../engine.js";
 
-// TODO: add a restart button when game starts
-
 let paused = true;
 let restartBtnInserted = false;
 let startBtn = document.getElementById("start-btn");

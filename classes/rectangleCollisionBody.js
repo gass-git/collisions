@@ -6,10 +6,8 @@ export default class RectangleCollisionBody {
     this.cornerDelta = cornerDelta;
     this.inCollision = {
       cornerArea: {
-        topLeft: false,
-        topRight: false,
-        bottomRight: false,
-        bottomLeft: false,
+        top: { left: false, right: false },
+        bottom: { left: false, right: false },
       },
       borderArea: {
         top: false,
