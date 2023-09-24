@@ -1,6 +1,8 @@
 export default function handleDrawing(objects, context) {
   const red = "rgb(255,160,122)";
 
+  context.clearRect(0, 0, canvas.width, canvas.height);
+
   objects.forEach((obj) => {
     context.strokeRect(obj.pos.x, obj.pos.y, obj.width, obj.height);
 
