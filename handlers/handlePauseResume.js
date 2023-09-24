@@ -23,7 +23,7 @@ function handlePauseResume() {
 }
 
 function insertRestartBtn() {
-  restartBtn.appendChild(document.createTextNode("restart"));
+  restartBtn.appendChild(document.createTextNode("reset"));
   restartBtn.id = "restart-btn";
   restartBtn.addEventListener("click", () => location.reload());
   startBtn.insertAdjacentElement("afterend", restartBtn);

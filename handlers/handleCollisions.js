@@ -19,7 +19,7 @@ function handleCanvasCollisions(objects, canvas) {
 
       setTimeout(() => {
         obj.collisionBody.inCollision.cornerArea.bottom.left = false;
-      }, 200);
+      }, 50);
     }
 
     // border area (bottom)
@@ -35,7 +35,7 @@ function handleCanvasCollisions(objects, canvas) {
 
       setTimeout(() => {
         obj.collisionBody.inCollision.borderArea.bottom = false;
-      }, 200);
+      }, 50);
     }
 
     // corner area (bottom right)
@@ -55,7 +55,7 @@ function handleCanvasCollisions(objects, canvas) {
 
       setTimeout(() => {
         obj.collisionBody.inCollision.cornerArea.bottom.right = false;
-      }, 200);
+      }, 50);
     }
 
     // border area (right)
@@ -71,7 +71,7 @@ function handleCanvasCollisions(objects, canvas) {
 
       setTimeout(() => {
         obj.collisionBody.inCollision.borderArea.right = false;
-      }, 200);
+      }, 50);
     }
 
     // corner area (top right)
@@ -91,7 +91,7 @@ function handleCanvasCollisions(objects, canvas) {
 
       setTimeout(() => {
         obj.collisionBody.inCollision.cornerArea.top.right = false;
-      }, 200);
+      }, 50);
     }
 
     // border area (top)
@@ -107,7 +107,7 @@ function handleCanvasCollisions(objects, canvas) {
 
       setTimeout(() => {
         obj.collisionBody.inCollision.borderArea.top = false;
-      }, 200);
+      }, 50);
     }
 
     // border area (left)
@@ -124,7 +124,7 @@ function handleCanvasCollisions(objects, canvas) {
 
       setTimeout(() => {
         obj.collisionBody.inCollision.borderArea.left = false;
-      }, 200);
+      }, 50);
     }
 
     // corner area (top left)
@@ -144,7 +144,7 @@ function handleCanvasCollisions(objects, canvas) {
 
       setTimeout(() => {
         obj.collisionBody.inCollision.cornerArea.top.left = false;
-      }, 200);
+      }, 50);
     }
   });
 }
@@ -182,7 +182,7 @@ function handleObjectsCollisions(objects, speed) {
 
         setTimeout(() => {
           obj.collisionBody.inCollision.borderArea.right = false;
-        }, 200);
+        }, 50);
       }
 
       // border area (left)
@@ -212,10 +212,26 @@ function handleObjectsCollisions(objects, speed) {
 
         setTimeout(() => {
           obj.collisionBody.inCollision.borderArea.left = false;
-        }, 200);
+        }, 50);
       }
 
-      // corner top (right)
+      /*
+       * CORNER TOP RIGHT
+       *
+       *   (x1, y1)
+       *    ----+----------+  (x2, y1)
+       *        |          |
+       *        |          |
+       *        |          |
+       *        |          |
+       *        +----------+  (x2, y2)
+       *  (x1, y2)         |
+       *                   |
+       *                   |
+       *                   |
+       *
+       */
+
       if (
         inArea(
           collider.collisionBody.cornerArea.bottom.left.x1,
@@ -233,26 +249,44 @@ function handleObjectsCollisions(objects, speed) {
             obj.collisionBody.cornerArea.top.right.y2
           ))
       ) {
-        if (obj.vector.x === 0) {
-          obj.vector.x = speed * -1;
-        } else {
-          obj.vector.x *= -1;
+        if (!obj.collisionBody.inCollision.cornerArea.top.right) {
+          if (obj.vector.x === 0) {
+            obj.vector.x = speed * -1;
+          } else {
+            obj.vector.x *= -1;
+          }
+
+          if (obj.vector.y === 0) {
+            obj.vector.y = speed;
+          } else if (obj.vector.y < 0) {
+            obj.vector.y *= -1;
+          }
+
+          obj.collisionBody.inCollision.cornerArea.top.right = true;
+          setTimeout(() => {
+            obj.collisionBody.inCollision.cornerArea.top.right = false;
+          }, 50);
         }
-
-        if (obj.vector.y === 0) {
-          obj.vector.y = speed;
-        } else if (obj.vector.y < 0) {
-          obj.vector.y *= -1;
-        }
-
-        obj.collisionBody.inCollision.cornerArea.top.right = true;
-
-        setTimeout(() => {
-          obj.collisionBody.inCollision.cornerArea.top.right = false;
-        }, 200);
       }
 
-      // corner bottom (right)
+      /*
+       *
+       * CORNER BOTTOM RIGHT
+       *
+       *                       |
+       *                       |
+       *                       |
+       *      (x1, y1)         |
+       *            +----------+ (x2, y1)
+       *            |          |
+       *            |          |
+       *            |          |
+       *            |          |
+       *   ---------+----------+ (x2, y2)
+       *         (x1, y2)
+       *
+       */
+
       if (
         inArea(
           collider.collisionBody.cornerArea.top.left.x1,
@@ -285,10 +319,80 @@ function handleObjectsCollisions(objects, speed) {
 
         setTimeout(() => {
           obj.collisionBody.inCollision.cornerArea.bottom.right = false;
-        }, 200);
+        }, 50);
       }
 
-      // corner top (left)
+      /*
+       * CORNER BOTTOM LEFT
+       *
+       *           |
+       *           |
+       *           |
+       *  (x1, y1) |        (x2, y1)
+       *           +----------+
+       *           |          |
+       *           |          |
+       *           |          |
+       *           |          |
+       *           +----------+ ------------
+       *   (x1, y2)       (x2, y2)
+       *
+       */
+
+      if (
+        inArea(
+          collider.collisionBody.cornerArea.top.right.x2,
+          obj.collisionBody.cornerArea.bottom.left.x1,
+          obj.collisionBody.cornerArea.bottom.left.x2
+        ) &&
+        (inArea(
+          collider.collisionBody.cornerArea.top.right.y1,
+          obj.collisionBody.cornerArea.bottom.left.y1,
+          obj.collisionBody.cornerArea.bottom.left.y2
+        ) ||
+          inArea(
+            collider.collisionBody.cornerArea.top.right.y2,
+            obj.collisionBody.cornerArea.bottom.left.y1,
+            obj.collisionBody.cornerArea.bottom.left.y2
+          ))
+      ) {
+        if (!obj.collisionBody.inCollision.cornerArea.bottom.left) {
+          if (obj.vector.x === 0) {
+            obj.vector.x = speed;
+          } else {
+            obj.vector.x *= -1;
+          }
+
+          if (obj.vector.y === 0) {
+            obj.vector.y = speed * -1;
+          } else if (obj.vector.y > 0) {
+            obj.vector.y *= -1;
+          }
+          obj.collisionBody.inCollision.cornerArea.bottom.left = true;
+
+          setTimeout(() => {
+            obj.collisionBody.inCollision.cornerArea.bottom.left = false;
+          }, 50);
+        }
+      }
+
+      /*
+       * CORNER TOP LEFT
+       *
+       *  (x1, y1)      (x2, y1)
+       *           +----------+---------
+       *           |          |
+       *           |          |
+       *           |          |
+       *           |          |
+       *  (x1, y2) +----------+ (x2, y2)
+       *           |
+       *           |
+       *           |
+       *           |
+       *
+       */
+
       if (
         inArea(
           collider.collisionBody.cornerArea.bottom.right.x2,
@@ -322,7 +426,7 @@ function handleObjectsCollisions(objects, speed) {
 
         setTimeout(() => {
           obj.collisionBody.inCollision.cornerArea.top.left = false;
-        }, 200);
+        }, 50);
       }
 
       // border area (bottom)
@@ -353,7 +457,7 @@ function handleObjectsCollisions(objects, speed) {
 
         setTimeout(() => {
           obj.collisionBody.inCollision.borderArea.bottom = false;
-        }, 200);
+        }, 50);
       }
 
       // border area (top)
@@ -383,7 +487,7 @@ function handleObjectsCollisions(objects, speed) {
 
         setTimeout(() => {
           obj.collisionBody.inCollision.borderArea.top = false;
-        }, 200);
+        }, 50);
       }
     });
   });
