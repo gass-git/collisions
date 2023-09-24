@@ -1,3 +1,5 @@
 import { handlePauseResume } from "./handlers/handlePauseResume.js";
 
-document.getElementById("btn-id").addEventListener("click", handlePauseResume);
+document
+  .getElementById("start-btn")
+  .addEventListener("click", handlePauseResume);
