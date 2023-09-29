@@ -1,6 +1,6 @@
 import Rectangle from "../classes/rectangle.js";
 
-export function factory(numberOfObjects, speed) {
+export function create(numberOfObjects, speed) {
   let obj = null;
   const size = 25;
   let arr = [];

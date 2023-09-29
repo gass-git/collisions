@@ -1,6 +1,12 @@
 import inArea from "../composables/inArea.js";
 import { borderInCollision } from "../composables/inCollision.js";
 
+function handleAllCollisions(objects, speed, canvas) {
+  handleCanvasCollisions(objects, canvas);
+  handleBordersCollisions(objects, speed);
+  handleCornersCollisions(objects, speed);
+}
+
 function handleCanvasCollisions(objects, canvas) {
   objects.forEach((obj) => {
     /*
@@ -61,7 +67,7 @@ function handleCanvasCollisions(objects, canvas) {
   });
 }
 
-function handleObjectsCollisions(objects, speed) {
+function handleBordersCollisions(objects, speed) {
   objects.forEach((obj) => {
     let colliders = objects.filter((el) => el !== obj);
 
@@ -122,6 +128,70 @@ function handleObjectsCollisions(objects, speed) {
         borderInCollision(obj, "left");
       }
 
+      /*
+       * BORDER AREA BOTTOM
+       */
+      if (
+        inArea(
+          collider.collisionBody.borderArea.top.y1,
+          obj.collisionBody.borderArea.bottom.y1,
+          obj.collisionBody.borderArea.bottom.y2
+        ) &&
+        (inArea(
+          collider.collisionBody.borderArea.top.x1,
+          obj.collisionBody.borderArea.bottom.x1,
+          obj.collisionBody.borderArea.bottom.x2
+        ) ||
+          inArea(
+            collider.collisionBody.borderArea.top.x2,
+            obj.collisionBody.borderArea.bottom.x1,
+            obj.collisionBody.borderArea.bottom.x2
+          ))
+      ) {
+        if (obj.vector.y === 0) {
+          obj.vector.y = speed * -1;
+        } else {
+          obj.vector.y *= -1;
+        }
+        borderInCollision(obj, "bottom");
+      }
+
+      /*
+       * BORDER AREA TOP
+       */
+      if (
+        inArea(
+          collider.collisionBody.borderArea.bottom.y2,
+          obj.collisionBody.borderArea.top.y1,
+          obj.collisionBody.borderArea.top.y2
+        ) &&
+        (inArea(
+          collider.collisionBody.borderArea.bottom.x1,
+          obj.collisionBody.borderArea.top.x1,
+          obj.collisionBody.borderArea.top.x2
+        ) ||
+          inArea(
+            collider.collisionBody.borderArea.bottom.x2,
+            obj.collisionBody.borderArea.top.x1,
+            obj.collisionBody.borderArea.top.x2
+          ))
+      ) {
+        if (obj.vector.y === 0) {
+          obj.vector.y = speed * -1;
+        } else {
+          obj.vector.y *= -1;
+        }
+        borderInCollision(obj, "top");
+      }
+    });
+  });
+}
+
+function handleCornersCollisions(objects, speed) {
+  objects.forEach((obj) => {
+    let colliders = objects.filter((el) => el !== obj);
+
+    colliders.forEach((collider) => {
       /*
        * CORNER TOP RIGHT
        *
@@ -334,64 +404,8 @@ function handleObjectsCollisions(objects, speed) {
           obj.collisionBody.inCollision.cornerArea.top.left = false;
         }, 50);
       }
-
-      /*
-       * BORDER AREA BOTTOM
-       */
-      if (
-        inArea(
-          collider.collisionBody.borderArea.top.y1,
-          obj.collisionBody.borderArea.bottom.y1,
-          obj.collisionBody.borderArea.bottom.y2
-        ) &&
-        (inArea(
-          collider.collisionBody.borderArea.top.x1,
-          obj.collisionBody.borderArea.bottom.x1,
-          obj.collisionBody.borderArea.bottom.x2
-        ) ||
-          inArea(
-            collider.collisionBody.borderArea.top.x2,
-            obj.collisionBody.borderArea.bottom.x1,
-            obj.collisionBody.borderArea.bottom.x2
-          ))
-      ) {
-        if (obj.vector.y === 0) {
-          obj.vector.y = speed * -1;
-        } else {
-          obj.vector.y *= -1;
-        }
-        borderInCollision(obj, "bottom");
-      }
-
-      /*
-       * BORDER AREA TOP
-       */
-      if (
-        inArea(
-          collider.collisionBody.borderArea.bottom.y2,
-          obj.collisionBody.borderArea.top.y1,
-          obj.collisionBody.borderArea.top.y2
-        ) &&
-        (inArea(
-          collider.collisionBody.borderArea.bottom.x1,
-          obj.collisionBody.borderArea.top.x1,
-          obj.collisionBody.borderArea.top.x2
-        ) ||
-          inArea(
-            collider.collisionBody.borderArea.bottom.x2,
-            obj.collisionBody.borderArea.top.x1,
-            obj.collisionBody.borderArea.top.x2
-          ))
-      ) {
-        if (obj.vector.y === 0) {
-          obj.vector.y = speed * -1;
-        } else {
-          obj.vector.y *= -1;
-        }
-        borderInCollision(obj, "top");
-      }
     });
   });
 }
 
-export { handleCanvasCollisions, handleObjectsCollisions };
+export { handleAllCollisions };

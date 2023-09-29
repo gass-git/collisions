@@ -1,4 +1,4 @@
-import { gameLoop } from "./../engine.js";
+import { gameLoop } from "../engine.js";
 
 let paused = true;
 let restartBtnInserted = false;

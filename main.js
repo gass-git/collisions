@@ -1,4 +1,4 @@
-import { handlePauseResume } from "./handlers/handlePauseResume.js";
+import { handlePauseResume } from "./handlers/pauseResume.js";
 
 document
   .getElementById("start-btn")
