@@ -10,7 +10,7 @@ import { factory } from "./composables/factory.js";
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
 const speed = 2;
-const objects = factory(5, speed);
+const objects = factory(10, speed);
 
 export function gameLoop() {
   handleDrawing(objects, context);

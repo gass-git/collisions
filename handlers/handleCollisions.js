@@ -2,26 +2,6 @@ import inArea from "../composables/inArea.js";
 
 function handleCanvasCollisions(objects, canvas) {
   objects.forEach((obj) => {
-    // corner area (bottom left)
-    if (
-      inArea(
-        canvas.height,
-        obj.collisionBody.cornerArea.bottom.left.y1,
-        obj.collisionBody.cornerArea.bottom.left.y2
-      ) ||
-      inArea(
-        0,
-        obj.collisionBody.cornerArea.bottom.left.x1,
-        obj.collisionBody.cornerArea.bottom.left.x2
-      )
-    ) {
-      obj.collisionBody.inCollision.cornerArea.bottom.left = true;
-
-      setTimeout(() => {
-        obj.collisionBody.inCollision.cornerArea.bottom.left = false;
-      }, 50);
-    }
-
     // border area (bottom)
     if (
       inArea(
@@ -38,26 +18,6 @@ function handleCanvasCollisions(objects, canvas) {
       }, 50);
     }
 
-    // corner area (bottom right)
-    if (
-      inArea(
-        canvas.height,
-        obj.collisionBody.cornerArea.bottom.right.y1,
-        obj.collisionBody.cornerArea.bottom.right.y2
-      ) ||
-      inArea(
-        canvas.width,
-        obj.collisionBody.cornerArea.bottom.right.x1,
-        obj.collisionBody.cornerArea.bottom.right.x2
-      )
-    ) {
-      obj.collisionBody.inCollision.cornerArea.bottom.right = true;
-
-      setTimeout(() => {
-        obj.collisionBody.inCollision.cornerArea.bottom.right = false;
-      }, 50);
-    }
-
     // border area (right)
     if (
       inArea(
@@ -71,26 +31,6 @@ function handleCanvasCollisions(objects, canvas) {
 
       setTimeout(() => {
         obj.collisionBody.inCollision.borderArea.right = false;
-      }, 50);
-    }
-
-    // corner area (top right)
-    if (
-      inArea(
-        canvas.width,
-        obj.collisionBody.cornerArea.top.right.x1,
-        obj.collisionBody.cornerArea.top.right.x2
-      ) ||
-      inArea(
-        0,
-        obj.collisionBody.cornerArea.top.right.y1,
-        obj.collisionBody.cornerArea.top.right.y2
-      )
-    ) {
-      obj.collisionBody.inCollision.cornerArea.top.right = true;
-
-      setTimeout(() => {
-        obj.collisionBody.inCollision.cornerArea.top.right = false;
       }, 50);
     }
 
@@ -124,26 +64,6 @@ function handleCanvasCollisions(objects, canvas) {
 
       setTimeout(() => {
         obj.collisionBody.inCollision.borderArea.left = false;
-      }, 50);
-    }
-
-    // corner area (top left)
-    if (
-      inArea(
-        0,
-        obj.collisionBody.cornerArea.top.left.x1,
-        obj.collisionBody.cornerArea.top.left.x2
-      ) ||
-      inArea(
-        0,
-        obj.collisionBody.cornerArea.top.left.y1,
-        obj.collisionBody.cornerArea.top.left.y2
-      )
-    ) {
-      obj.collisionBody.inCollision.cornerArea.top.left = true;
-
-      setTimeout(() => {
-        obj.collisionBody.inCollision.cornerArea.top.left = false;
       }, 50);
     }
   });

@@ -6,13 +6,15 @@ export function factory(numberOfObjects, speed) {
   let arr = [];
 
   for (let i = 1; i <= numberOfObjects; i++) {
+    let direction = i % 2 ? -1 : 1;
+
     obj = new Rectangle(
       size,
       size,
-      (size + 1) * (i + 1),
-      (size + 1) * (i + 1),
-      speed,
-      speed
+      (size + 3) * (i + 1),
+      (size + 3) * (i + 1),
+      speed * direction,
+      speed * direction
     );
 
     arr.push(obj);
