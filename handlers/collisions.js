@@ -242,7 +242,7 @@ function handleCornersCollisions(objects, speed) {
           obj.collisionBody.inCollision.cornerArea.top.right = true;
           setTimeout(() => {
             obj.collisionBody.inCollision.cornerArea.top.right = false;
-          }, 50);
+          }, 20);
         }
       }
 
@@ -295,7 +295,7 @@ function handleCornersCollisions(objects, speed) {
 
         setTimeout(() => {
           obj.collisionBody.inCollision.cornerArea.bottom.right = false;
-        }, 50);
+        }, 20);
       }
 
       /*
@@ -348,7 +348,7 @@ function handleCornersCollisions(objects, speed) {
 
           setTimeout(() => {
             obj.collisionBody.inCollision.cornerArea.bottom.left = false;
-          }, 50);
+          }, 20);
         }
       }
 
@@ -402,7 +402,7 @@ function handleCornersCollisions(objects, speed) {
 
         setTimeout(() => {
           obj.collisionBody.inCollision.cornerArea.top.left = false;
-        }, 50);
+        }, 20);
       }
     });
   });

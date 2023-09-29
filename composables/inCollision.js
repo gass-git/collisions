@@ -1,6 +1,6 @@
 export function borderInCollision(obj, pos) {
   const reference = obj.collisionBody.inCollision.borderArea;
-  const time = 100;
+  const time = 20;
 
   switch (pos) {
     case "top":
