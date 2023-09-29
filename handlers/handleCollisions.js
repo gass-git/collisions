@@ -1,8 +1,11 @@
 import inArea from "../composables/inArea.js";
+import { borderInCollision } from "../composables/inCollision.js";
 
 function handleCanvasCollisions(objects, canvas) {
   objects.forEach((obj) => {
-    // border area (bottom)
+    /*
+     * BORDER BOTTOM
+     */
     if (
       inArea(
         canvas.height,
@@ -11,14 +14,12 @@ function handleCanvasCollisions(objects, canvas) {
       )
     ) {
       obj.vector.y *= -1;
-      obj.collisionBody.inCollision.borderArea.bottom = true;
-
-      setTimeout(() => {
-        obj.collisionBody.inCollision.borderArea.bottom = false;
-      }, 50);
+      borderInCollision(obj, "bottom");
     }
 
-    // border area (right)
+    /*
+     * BORDER RIGHT
+     */
     if (
       inArea(
         canvas.width,
@@ -27,14 +28,12 @@ function handleCanvasCollisions(objects, canvas) {
       )
     ) {
       obj.vector.x *= -1;
-      obj.collisionBody.inCollision.borderArea.right = true;
-
-      setTimeout(() => {
-        obj.collisionBody.inCollision.borderArea.right = false;
-      }, 50);
+      borderInCollision(obj, "right");
     }
 
-    // border area (top)
+    /*
+     * BORDER TOP
+     */
     if (
       inArea(
         0,
@@ -43,14 +42,12 @@ function handleCanvasCollisions(objects, canvas) {
       )
     ) {
       obj.vector.y *= -1;
-      obj.collisionBody.inCollision.borderArea.top = true;
-
-      setTimeout(() => {
-        obj.collisionBody.inCollision.borderArea.top = false;
-      }, 50);
+      borderInCollision(obj, "top");
     }
 
-    // border area (left)
+    /*
+     * BORDER LEFT
+     */
     if (
       inArea(
         0,
@@ -59,12 +56,7 @@ function handleCanvasCollisions(objects, canvas) {
       )
     ) {
       obj.vector.x *= -1;
-
-      obj.collisionBody.inCollision.borderArea.left = true;
-
-      setTimeout(() => {
-        obj.collisionBody.inCollision.borderArea.left = false;
-      }, 50);
+      borderInCollision(obj, "left");
     }
   });
 }
