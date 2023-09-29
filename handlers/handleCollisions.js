@@ -89,12 +89,7 @@ function handleObjectsCollisions(objects, speed) {
         } else {
           obj.vector.x *= -1;
         }
-
-        obj.collisionBody.inCollision.borderArea.right = true;
-
-        setTimeout(() => {
-          obj.collisionBody.inCollision.borderArea.right = false;
-        }, 50);
+        borderInCollision(obj, "right");
       }
 
       // border area (left)
@@ -120,11 +115,7 @@ function handleObjectsCollisions(objects, speed) {
         } else {
           obj.vector.x *= -1;
         }
-        obj.collisionBody.inCollision.borderArea.left = true;
-
-        setTimeout(() => {
-          obj.collisionBody.inCollision.borderArea.left = false;
-        }, 50);
+        borderInCollision(obj, "left");
       }
 
       /*
@@ -364,12 +355,7 @@ function handleObjectsCollisions(objects, speed) {
         } else {
           obj.vector.y *= -1;
         }
-
-        obj.collisionBody.inCollision.borderArea.bottom = true;
-
-        setTimeout(() => {
-          obj.collisionBody.inCollision.borderArea.bottom = false;
-        }, 50);
+        borderInCollision(obj, "bottom");
       }
 
       // border area (top)
@@ -395,11 +381,7 @@ function handleObjectsCollisions(objects, speed) {
         } else {
           obj.vector.y *= -1;
         }
-        obj.collisionBody.inCollision.borderArea.top = true;
-
-        setTimeout(() => {
-          obj.collisionBody.inCollision.borderArea.top = false;
-        }, 50);
+        borderInCollision(obj, "top");
       }
     });
   });
