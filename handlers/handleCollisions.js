@@ -66,7 +66,9 @@ function handleObjectsCollisions(objects, speed) {
     let colliders = objects.filter((el) => el !== obj);
 
     colliders.forEach((collider) => {
-      // border area (right)
+      /*
+       * BORDER AREA RIGHT
+       */
       if (
         inArea(
           collider.collisionBody.borderArea.left.x1,
@@ -92,7 +94,9 @@ function handleObjectsCollisions(objects, speed) {
         borderInCollision(obj, "right");
       }
 
-      // border area (left)
+      /*
+       * BORDER AREA LEFT
+       */
       if (
         inArea(
           collider.collisionBody.borderArea.right.x2,
@@ -173,7 +177,6 @@ function handleObjectsCollisions(objects, speed) {
       }
 
       /*
-       *
        * CORNER BOTTOM RIGHT
        *
        *                       |
@@ -332,7 +335,9 @@ function handleObjectsCollisions(objects, speed) {
         }, 50);
       }
 
-      // border area (bottom)
+      /*
+       * BORDER AREA BOTTOM
+       */
       if (
         inArea(
           collider.collisionBody.borderArea.top.y1,
@@ -358,7 +363,9 @@ function handleObjectsCollisions(objects, speed) {
         borderInCollision(obj, "bottom");
       }
 
-      // border area (top)
+      /*
+       * BORDER AREA TOP
+       */
       if (
         inArea(
           collider.collisionBody.borderArea.bottom.y2,
