@@ -74,6 +74,19 @@ function handleBordersCollisions(objects, speed) {
     colliders.forEach((collider) => {
       /*
        * BORDER AREA RIGHT
+       *
+       * -------------------
+       *                   |
+       *      (x1,y1) +----+ (x2,y1)
+       *              |    |
+       *              |    |
+       *              |    |
+       *              |    |
+       *              |    |
+       *      (x1,y2) +----+ (x2,y2)
+       *                   |
+       * -------------------
+       *
        */
       if (
         inArea(
@@ -102,6 +115,19 @@ function handleBordersCollisions(objects, speed) {
 
       /*
        * BORDER AREA LEFT
+       *
+       *              ----------------------
+       *              |
+       *      (x1,y1) +----+ (x2,y1)
+       *              |    |
+       *              |    |
+       *              |    |
+       *              |    |
+       *              |    |
+       *      (x1,y2) +----+ (x2,y2)
+       *              |
+       *              ----------------------
+       *
        */
       if (
         inArea(
@@ -130,6 +156,19 @@ function handleBordersCollisions(objects, speed) {
 
       /*
        * BORDER AREA BOTTOM
+       *
+       *
+       *       |                           |
+       *       |                           |
+       *       |                           |
+       *       |                           |
+       *       | (x1,y1)           (x2,y1) |
+       *       |    +-----------------+    |
+       *       |    |                 |    |
+       *       |    |                 |    |
+       *       -----+-----------------+-----
+       *         (x1,y2)            (x2,y2)
+       *
        */
       if (
         inArea(
@@ -157,7 +196,21 @@ function handleBordersCollisions(objects, speed) {
       }
 
       /*
-       * BORDER AREA TOP
+       *  BORDER AREA TOP
+       *
+       *
+       *         (x1,y1)          (x2,y1)
+       *       -----+-----------------+-----
+       *       |    |                 |    |
+       *       |    |                 |    |
+       *       |    +-----------------+    |
+       *       | (x1,y2)           (x2,y2) |
+       *       |                           |
+       *       |                           |
+       *       |                           |
+       *       |                           |
+       *
+       *
        */
       if (
         inArea(
