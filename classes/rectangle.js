@@ -11,7 +11,7 @@ export default class Rectangle {
       height,
       posX,
       posY,
-      6
+      8
     );
   }
 }

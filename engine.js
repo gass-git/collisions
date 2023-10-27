@@ -7,7 +7,7 @@ import { create } from "./composables/factory.js";
 const canvas = document.getElementById("canvas");
 const context = canvas.getContext("2d");
 const speed = 2;
-const objects = create(10, speed);
+const objects = create(12, speed);
 
 export function gameLoop() {
   handleDrawing(objects, context);

@@ -263,11 +263,16 @@ function handleCornersCollisions(objects, speed) {
        */
 
       if (
-        inArea(
+        (inArea(
           collider.collisionBody.cornerArea.bottom.left.x1,
           obj.collisionBody.cornerArea.top.right.x1,
           obj.collisionBody.cornerArea.top.right.x2
-        ) &&
+        ) ||
+          inArea(
+            collider.collisionBody.cornerArea.bottom.left.x2,
+            obj.collisionBody.cornerArea.top.right.x1,
+            obj.collisionBody.cornerArea.top.right.x2
+          )) &&
         (inArea(
           collider.collisionBody.cornerArea.bottom.left.y2,
           obj.collisionBody.cornerArea.top.right.y1,
@@ -317,11 +322,16 @@ function handleCornersCollisions(objects, speed) {
        */
 
       if (
-        inArea(
+        (inArea(
           collider.collisionBody.cornerArea.top.left.x1,
           obj.collisionBody.cornerArea.bottom.right.x1,
           obj.collisionBody.cornerArea.bottom.right.x2
-        ) &&
+        ) ||
+          inArea(
+            collider.collisionBody.cornerArea.top.left.x2,
+            obj.collisionBody.cornerArea.bottom.right.x1,
+            obj.collisionBody.cornerArea.bottom.right.x2
+          )) &&
         (inArea(
           collider.collisionBody.cornerArea.top.left.y2,
           obj.collisionBody.cornerArea.bottom.right.y1,
@@ -369,11 +379,16 @@ function handleCornersCollisions(objects, speed) {
        */
 
       if (
-        inArea(
-          collider.collisionBody.cornerArea.top.right.x2,
+        (inArea(
+          collider.collisionBody.cornerArea.top.right.x1,
           obj.collisionBody.cornerArea.bottom.left.x1,
           obj.collisionBody.cornerArea.bottom.left.x2
-        ) &&
+        ) ||
+          inArea(
+            collider.collisionBody.cornerArea.top.right.x2,
+            obj.collisionBody.cornerArea.bottom.left.x1,
+            obj.collisionBody.cornerArea.bottom.left.x2
+          )) &&
         (inArea(
           collider.collisionBody.cornerArea.top.right.y1,
           obj.collisionBody.cornerArea.bottom.left.y1,
@@ -423,11 +438,16 @@ function handleCornersCollisions(objects, speed) {
        */
 
       if (
-        inArea(
-          collider.collisionBody.cornerArea.bottom.right.x2,
+        (inArea(
+          collider.collisionBody.cornerArea.bottom.right.x1,
           obj.collisionBody.cornerArea.top.left.x1,
           obj.collisionBody.cornerArea.top.left.x2
-        ) &&
+        ) ||
+          inArea(
+            collider.collisionBody.cornerArea.bottom.right.x2,
+            obj.collisionBody.cornerArea.top.left.x1,
+            obj.collisionBody.cornerArea.top.left.x2
+          )) &&
         (inArea(
           collider.collisionBody.cornerArea.bottom.right.y2,
           obj.collisionBody.cornerArea.top.left.y1,

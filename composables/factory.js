@@ -2,7 +2,7 @@ import Rectangle from "../classes/rectangle.js";
 
 export function create(numberOfObjects, speed) {
   let obj = null;
-  const size = 25;
+  const size = 30;
   let arr = [];
 
   for (let i = 1; i <= numberOfObjects; i++) {
